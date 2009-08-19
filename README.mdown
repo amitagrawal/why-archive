@@ -3,3 +3,7 @@
 This is an archive of things that made _why known to many on the web.
 
 Please feel free to fork and add, though please respect _why's license and copyright of any material. Licenses should be included where possible.
+
+# What we need
+
+Anything you guys think is an interesting bit of content as long as there is a license to go with it. The wiki on this project already has a start on listing things so check it out if you want some ideas.
