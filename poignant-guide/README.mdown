@@ -1,0 +1,3 @@
+["Why's Poignant Guide To Ruby"](http://en.wikipedia.org/wiki/Why's_\(poignant\)_Guide_to_Ruby) was probably what made him so well known through the Ruby community and tech circles. Many cite it as the reason they bothered learning Ruby.
+
+In this folder is a PDF archive of the book. It was eventually released as an open source project which many contributed to making the material available in more formats. A web archive of the HTML edition can still be found [at the web archive project](http://web.archive.org/web/20080129023848/poignantguide.net/ruby/).
