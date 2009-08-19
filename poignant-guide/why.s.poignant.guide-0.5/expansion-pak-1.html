@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Why's (Poignant) Guide to Ruby :: Expansion Pak #1. The Tiger's Vest (with a Basic Introduction to Irb)</title>
+    <link rel="stylesheet" type="text/css" href="guide.css" />
+</head>
+<body>
+
+<div id="pakbanner">
+   <div class="pager">
+   &lt; <a class="pagebar" href="index.html">prev</a> | <a class="pagebar" href="index.html">next</a> &gt;
+   </div>
+   <div class="title">
+   <h3>why's <span class="hilite">(poignant)</span> guide to ruby</h3>
+   &nbsp;<a class="pagebar" href="http://whytheluckystiff.net/"><b>whytheluckystiff.net</b></a> &gt; <a class="pagebar" href="index.html">Contents</a>
+   </div>
+</div>
+<div align="center">
+<div class="page">
+    <div class="pageTitle">
+        <h3>Expansion Pak No. 1.</h3>
+        <h1>The Tiger's Vest (with a Basic Introduction to Irb)</h1>
+    </div>
+    <div class="content">
+
+    
+
+        <p><img src="i/tigers.vest-1.gif" title="Tiger has vest.  Tiger likes girl robot.  Earth crashing into sun..." alt="Tiger has vest.  Tiger likes girl robot.  Earth crashing into sun..." /><br />
+</p>
+
+    
+    
+        
+        <div class="sidebar">
+        <h1>sidebar!</h1>
+        <h2>About Ruby Versions</h2>
+
+        <p>If you&#8217;ve visited any sites which offer Ruby for download, you&#8217;ve probably seen a number of different versions of Ruby available.  Obviously, the greater the version number, the more recent the version of Ruby.  But that&#8217;s not exactly true.  Version numbers have meaning in Rubyland and I&#8217;d like you to make an educated choice.</p>
+
+	<p><strong>1.8.1</strong> is the latest <strong>stable</strong> version of Ruby.  Stable versions offer the latest features which have been widely tested and are recommended for general use.  When new stable versions come out, you can safely upgrade to these new versions.</p>
+
+	<p><strong>1.9.0</strong> is the latest <strong>development</strong> release of Ruby.  The development release includes experimental changes to Ruby and unfixed problems.  This release is for anyone who wants take a peep into the future of Ruby at the risk of encountering some bugs.</p>
+
+	<p>Now, you&#8217;ll notice that the version number is comprised of three individual numbers, which are: <strong>the major version</strong>, <strong>the minor version</strong>, and <strong>the teeny version</strong>.  The  major version counts each complete rewrite of Ruby.  The minor version is changed based on sweeping changes to Ruby.  The teeny version is incremented every few months as smaller changes and bug fixes are brought in.</p>
+
+	<p>All editions of Ruby thus far have a major version of 1.  When Ruby2 comes along, you&#8217;ll see this notch up one.</p>
+
+	<p>The minor version indicates whether a version is stable or not.  <strong>If the minor version is an even number, then that version of Ruby is stable.   If it&#8217;s odd, then that Ruby is a development version.</strong>  After a year or so, when the development version is ready  for the world, both numbers are increased and the teeny version is returned to zero.</p>
+
+	<p>Oh, and if I could give you a taste of how smoothly Ruby moves along!  I can&#8217;t count how often a fresh idea lands on the Ruby-Core mailing list, where the Emperors of Ruby converse, and <strong>that same idea</strong> gets worked into Ruby within a few days.  It is a lovely machine says I.<br />
+</p>
+        <h1>sidebar!</h1>
+        </div>
+
+    
+    
+
+        <p>Let&#8217;s install the very latest Ruby on your computer so you can follow all the examples in the (Poignant) Guide and actually do things right now!  (Yes, things!)</p>
+
+	<ul>
+	<li>If you are using <strong>Microsoft Windows</strong>, begin by downloading the <a href="http://rubyforge.org/frs/?group_id=167">Ruby Installer for Windows</a>.  Running this &#8220;one-click&#8221; installer will setup Ruby for you, as well as a tidy pack of useful software, such as a small text editor and some additional libraries.</li>
+		<li>If you are on Apple&#8217;s <strong>Mac <span class="caps">OS X</span></strong>, then Ruby might already be installed.  Versions 10.2 and 10.3 of <span class="caps">OS X</span> both came with Ruby.  Still, I encourage you to upgrade Ruby so that all the examples in this book will work for you.  Download a <strong>stable</strong> <a href="http://homepage.mac.com/discord/Ruby/">disk image</a>. You will need <span class="caps">OS X 10</span>.3 (Panther) and the XCode Tools in order to use this image.</li>
+		<li>On <strong>FreeBSD</strong>, Ruby is right there in the ports system.  In fact, if you&#8217;ve used the essential <code>portupgrade</code> tool, then Ruby is already installed.  Akinori Musha, one of Ruby&#8217;s immensely talented core developers, wrote portupgrade, which means that you can use your Ruby learning right away to hack up your <code>pkgtools.conf</code>.
+<pre>
+  cd /usr/ports/lang/ruby18
+  sudo make install
+</pre></li>
+		<li>On <strong>RedHat</strong> or <strong>Mandrake</strong> Linux, you can find <a href="http://rpmfind.net/linux/rpm2html/search.php?query=Ruby">Ruby RPMs</a>. I believe Ruby is also available through Ximian&#8217;s Red Carpet.</li>
+		<li>On <strong>Debian</strong>, use <code>apt-get install ruby</code>.</li>
+		<li>On <strong>Gentoo</strong>, <code>emerge ruby</code>.</li>
+		<li>Other <strong>Linux</strong> and <strong><span class="caps">UNIX</span></strong> platforms, even <strong><span class="caps">OS X</span></strong> (if the disk images don&#8217;t work for you):  Download the <a href="http://ruby-lang.org/en/20020102.html">latest source code</a>.   For instance, <a href="http://www.ruby-lang.org/download-1.8.1.rbx">Ruby 1.8.1</a>.  To unpack and compile:
+<pre>
+  tar xzvf ruby-1.8.1.tar.gz
+  cd ruby-1.8.1
+  ./configure
+  make
+  make install
+</pre>
+(Again, the above commands are for installing Ruby from the source code.  You may need to use <code>su</code> or <code>sudo</code> to give you permission to run the <code>make install</code>.)</li>
+	</ul>
+
+	<p>To test if Ruby is installed, open a command shell and run: <code>ruby -v</code>.  If Ruby is installed properly, you&#8217;ll see a bit of version info.</p>
+
+<pre>
+  ruby 1.8.1 (2003-12-25) [i386-mswin32]
+</pre>
+
+	<ul>
+	<li>To open a command shell in <strong>Microsoft Windows</strong>, go to the Start Menu and select <code>Run...</code>. Type in: <code>cmd</code>.  Press OK.  A command shell window will appear.</li>
+		<li>To open a command shell on <strong>Mac <span class="caps">OS X</span></strong>, go to <strong>Applications > Utilities</strong>.  Run the <strong>Terminal</strong> program.</li>
+	</ul>
+
+	<p>Okay, keep that command shell open cause we&#8217;ll need it if the Earth gets rescued from its plummet toward the sun.</p>
+
+	<p><img src="i/tigers.vest-2.gif" title="Tiger saves Earth with Ice Gun.  Girl robot zooms around tuxed shop..." alt="Tiger saves Earth with Ice Gun.  Girl robot zooms around tuxed shop..." /></p>
+
+	<p>Ruby comes with a very, very, very extremely helpful tool called <strong>Irb</strong>.  Interactive Ruby. In your command shell, type: <code>irb</code>.</p>
+
+<pre>
+  irb(main):001:0&gt;
+</pre>
+
+	<p>You should see the prompt above.  This Irb prompt will allow you to enter Ruby code and, upon pressing <em>Enter</em>, the code will run.</p>
+
+	<p>So, at the Irb prompt, do a: <code>3000 + 500</code>.</p>
+
+<pre>
+  irb(main):001:0&gt; 3000 + 500
+  =&gt; 3500
+  irb(main):002:0&gt;      
+</pre>
+
+	<p>The example <code>3000 + 500</code> is legitimate code.  We&#8217;re just not assigning the answer to a variable. Which is okay in Irb, because Irb prints the answer given back by code you run.</p>
+
+	<p>Irb is a great calculator.</p>
+
+<pre>
+  irb(main):002:0&gt; ( ( 220.00 + 34.15 ) * 1.08 ) / 12
+  =&gt; 22.8735
+  irb(main):003:0&gt; "1011010".to_i( 2 )
+  =&gt; 90
+  irb(main):004:0&gt; Time.now - Time.local( 2003, "Jul", 31, 8, 10, 0 )
+  =&gt; 31119052.510118
+</pre>
+
+	<p>The first example demonstrates a bit of math and is read as: <em>220.00 plus 34.15 times 1.08 divided by 12</em>. The second example takes a binary string and converts it to a decimal number.  The third example computes the number of seconds between <code>now</code> and July 31, 2003 at 8:10 AM.  The answers to all of these are printed back to us by Irb with a little <span class="caps">ASCII</span> arrow pointing.</p>
+
+	<h3>Reading the Prompt</h3>
+
+	<p>I know the prompt surely looks bewildering.  Well, let&#8217;s not delay in dissecting it.  It&#8217;s very simple. The prompt has three parts, each separated by <strong>colons</strong>.</p>
+
+	<p>The first section, which reads <code>irb(main)</code>, shows <strong>the name of the program</strong> we are running.  The second section shows a line number, <strong>a count of how many lines of Ruby we&#8217;ve typed</strong>.  The third section is <strong>a depth level</strong>.  Whenever you open a statement which needs closing, the depth level will increase by one. And whenever Irb senses that your code is unfinished, <strong>the end of the prompt will become an asterisk.</strong>  </p>
+
+<pre>
+  irb(main):001:0&gt; bell = :pressed
+  =&gt; :pressed
+  irb(main):002:0&gt; ice_gun =  
+  irb(main):003:0*   if bell == :pressed
+  irb(main):004:1&gt;     :on
+  irb(main):005:1&gt;   else
+  irb(main):006:1*     :off
+  irb(main):007:1&gt;   end
+  =&gt; :on
+</pre>
+
+	<p>Notice how the depth level increased to 1 when I opened the <code>if</code> statement.  And how the asterisk indicates the continuation of a line.</p>
+
+	<h3>Tweaking the Prompt</h3>
+
+	<p>You don&#8217;t have to like the prompt&#8217;s appearance, though.  I&#8217;m not forcing you to do anything and, if you want to hack it up, I&#8217;m right here beside you.</p>
+
+	<p>Irb has a few other included prompts which may better appease your senses.  Try <code>irb --prompt simple</code>. This time Irb will treat you to a very basic set of arrows, allowing you to enter your code without the whole status report.</p>
+
+<pre>
+  &gt;&gt; %w(my best friend's arm)
+  =&gt; ["my", "best", "friend's", "arm"]
+  &gt;&gt; 
+</pre>
+
+	<p>Ruby comes with a few prompts.  The <strong>simple</strong> prompt seen above.  The <strong>xmp</strong> prompt which has no prompt at all and indents the answer arrow.  (It&#8217;s supposed to look nice for printing.)  Also, the <strong>null</strong> prompt, which eliminates prompts altogether.  Set the prompt by just supplying the name with the <code>--prompt</code> option.  (So, <code>irb --prompt null</code>.)</p>
+
+	<p>Making your own prompt is okay as well.  Irb is completely customizable from inside of itself. The <code>conf</code> object contaions all of Irb&#8217;s configuration settings.  Some of these configuration settings are for controlling the prompt.</p>
+
+<pre>
+  &gt;&gt; conf.methods.grep /prompt/
+  =&gt; ["prompting?", "prompt_s", "prompt_s=", "prompt_c", "prompt_c=", 
+      "prompt_i", "prompt_mode", "prompt_i=", "prompt_mode="]
+</pre>
+
+	<p>Let&#8217;s setup our prompt to display line numbers with just a bit of decor.</p>
+
+<pre>
+  &gt;&gt; conf.prompt_i = "%3n :&gt; "           # the normal prompt
+  &gt;&gt; conf.prompt_s = "%3n .%l "          # the string continuation prompt
+  &gt;&gt; conf.prompt_c = "%3n .^ "           # the code continuation prompt
+  &gt;&gt; conf.return_format = "    =&gt; %s\n"  # the answer arrow
+</pre>
+
+	<p>Above are the four parts to an Irb prompt.  The string continuation prompt is displayed when a string is still open when you hit <em>Enter</em>.  The <code>%3n</code> describes that Irb should reserve three characters for the line number.  The <code>%l</code> saves a place for displaying the type of string being continued.  (If you&#8217;re continuing a double-quoted string, it shows a double quote.  If you&#8217;re continuing a regular expression, it shows a slash.)</p>
+
+	<p>The rest are little symbols to decorate the prompt.  So, in the case of a continuing code line, I show a caret which points up to the line where that line of code started. </p>
+
+	<p>You can read more about customizing Irb and saving your configuration to a file in  the complete <a href="http://www.rubycentral.com/book/irb.html">guide to Irb</a>, available in the free-for-your-wandering-Internet-eyes <em>Programming Ruby</em>.</p>
+
+    
+    
+        
+        <div class="sidebar">
+        <h1>sidebar!</h1>
+        <h2>Windows Hiccups</h2>
+
+        <p>Okay, here&#8217;s what you do to get tab completion working in Windows.   <a href="http://whytheluckystiff.net/ruby/dist/readline.so-for-1.8.zip">Download this.</a> A zip with two files inside.  These get copied into your Ruby installation. Place readline.dll in the <strong>bin</strong> folder.  The readline.so goes in <strong>lib/ruby/1.8/i386-mswin32</strong> folder.</p>
+
+	<p>Then, run in your command shell: <code>irb --readline -r irb/completion</code>.</p>
+
+	<p>And for Europeans, you&#8217;ll need <a href="http://whytheluckystiff.net/ruby/dist/Input.euro">this.</a> Save it as <strong>.inputrc</strong> and place it in your home directory.  (Your personal directory which contains your Desktop and My Documents folders.)<br />
+</p>
+        <h1>sidebar!</h1>
+        </div>
+
+    
+    
+
+        <h3>Tab Completion</h3>
+
+	<p>One feature of Irb which is rarely mentioned is its beneficial tab completion.  And it&#8217;s a bit of a taboo topic at the moment, since getting it to work on Windows is a slight horror. (No, don&#8217;t be afraid.  All at once now, look to your right.)</p>
+
+	<p>If you&#8217;re on Linux or FreeBSD, the tab completion should work right off.  And if you&#8217;re using <span class="caps">OS X</span>, you should be sure you&#8217;re upgrade to the latest 1.8 and when run Irb, use:</p>
+
+<pre>
+  irb --readline -r irb/completion
+</pre> 
+
+	<p>Basically, when you hit <em>Tab</em>, Irb will take a guess at what you&#8217;re trying to type. Try typing: <code>[].col</code> and hit <em>Tab</em>.  Irb will finish it.  <code>[].collect</code> and it leaves your cursor at the end so you can add further.</p>
+
+	<p>If there are several matches, just hitting <em>Tab</em> will do nothing.  But hit it twice and Ruby will give you a complete list of possible matches.</p>
+
+	<p>This is great if you just want to see all the methods for a certain object.  Type in any number, a dot, and use <em>Tab</em>.</p>
+
+<pre>
+  &gt;&gt; 42.
+                42.floor                   42.next                    42.step
+  42.__id__     42.freeze                  42.nil?                    42.succ
+  42.__send__   42.frozen?                 42.nonzero?                42.taint
+  42.abs        42.hash                    42.object_id               42.tainted?
+  42.between?   42.id                      42.prec                    42.times
+  42.ceil       42.id2name                 42.prec_f                  42.to_f
+  42.chr        42.inspect                 42.prec_i                  42.to_i
+  42.class      42.instance_eval           42.private_methods         42.to_int
+  42.clone      42.instance_of?            42.protected_methods       42.to_s
+  42.coerce     42.instance_variable_get   42.public_methods          42.to_sym
+  42.display    42.instance_variable_set   42.quo                     42.truncate
+  42.div        42.instance_variables      42.remainder               42.type
+  42.divmod     42.integer?                42.respond_to?             42.untaint
+  42.downto     42.is_a?                   42.round                   42.upto
+  42.dup        42.kind_of?                42.send                    42.zero?
+  42.eql?       42.method                  42.singleton_method_added  
+  42.equal?     42.methods                 42.singleton_methods       
+  42.extend     42.modulo                  42.size  
+</pre>
+
+	<p>Now, trying typing <code>Kernel::</code> and then <em>Tab</em>.  All the core methods.  Don&#8217;t ever forget this and use it all the time.</p>
+
+	<p><img src="i/tigers.vest-3.gif" title="Except the robot flew away and the ice gun went on and on..." alt="Except the robot flew away and the ice gun went on and on..." /></p>
+
+	<p>Okay, one last thing and then I&#8217;ll quit bugging you with all this great technology. But I have to say it loud, so take cover!  I&#8217;m across the world here, folks, but the volume comes down from the sky&#8212;a bold, red crescendo of&#8212;</p>
+
+	<h1 style="font-size:84pt; color:#FDD; line-height: 120%;text-align:center;">((<span style="color:#A53;">ri</span>))</h1>
+
+	<h3 style="color: #300;text-align:center;">(Ruby&#8217;s Own 411 or 555-1212 or <em>Yes, Operator, Get Belgrade on the Line</em>&#8212;I&#8217;ll  Be Right Here&#8212;Just Plain Hammering The Pound Key Until Someone Picks Up&#8230;)</h3>
+
+	<p>And Ri picks up the line.  &#8220;This is Ri.  Class and colon, please.&#8221; </p>
+
+	<p>You rush in, &#8220;This is an instance method, Operator.  Enumerable#zip.&#8221; </p>
+
+<pre>
+  ri Enumerable#zip
+</pre>
+
+	<p>Without delay, right up on your teletype display (so swiftly that even the cat perched atop cranes his neck around, gapes and hands it the royal cup <em>Most Blatantly Great Thing Since Michael Dorn</em>):</p>
+
+<pre>
+  --------------------------------------------------------- Enumerable#zip
+       enum.zip(arg, ...)                   =&gt; array
+       enum.zip(arg, ...) {|arr| block }    =&gt; nil
+  ------------------------------------------------------------------------
+       Converts any arguments to arrays, then merges elements of _enum_
+       with corresponding elements from each argument. This generates a
+       sequence of +enum#size+ _n_-element arrays, where _n_ is one more
+       that the count of arguments. If the size of any argument is less
+       than +enum#size+, +nil+ values are supplied. If a block given, it
+       is invoked for each output array, otherwise an array of arrays is
+       returned.
+
+          a = [ 4, 5, 6 ]
+          b = [ 7, 8, 9 ]
+
+          (1..3).zip(a, b)      #=&gt; [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+          "cat\ndog".zip([1])   #=&gt; [["cat\n", 1], ["dog", nil]]
+          (1..3).zip            #=&gt; [[1], [2], [3]]
+
+</pre>
+
+	<p>It&#8217;s an unabridged Ruby dictionary servo&#8212;the Power of Just Asking is at your fingertips&#8212;<em>don&#8217;t tell me you&#8217;ve never heard of this no-money-down  lifetime-supply-of-proper-explanations!</em></p>
+
+	<p>To get an explanation of any class, along with a complete directory to all of its methods, all in a very soothing voice fit for calming any of you panicking cosmonauts  out there fighting the pull of some zero-tolerance tractor beam, just use at your command shell: <code>ri Class</code>.</p>
+
+	<p>But for help on class methods, you cuff on: <code>ri Class::method</code>.</p>
+
+	<p>Though instance methods use a pound key rather than a dot.  (Since the dot can mean class <strong>or</strong> instance methods.)  I mean: <code>ri Class#method</code>.</p>
+
+	<p>The full spread of classes, a full list from the Very Top down to the Earth&#8217;s core, can be achieved with <code>ri -c</code>.</p>
+
+	<p>And beyond text, you can make <span class="caps">HTML</span>: <code>ri -Tf html String#gsub &gt; gsub.html</code>.</p>
+
+	<p><strong>Or show colory <span class="caps">ANSI</span>: <code>ri -Tf ansi String#gsub</code>.</strong>  And this is last and best.</p>
+
+	<h3>Into the Ri Switchboard</h3>
+
+	<p>Behind Ri sings a chorus of human voices, primarily Dave Thomas, an author of <em>Programming Ruby</em>, and absolutely the American foster parent of Ruby.  Many of these elaborate spiels from Ri are straight from the references of <em>Programming Ruby</em>.  Don&#8217;t forget to thank Dave periodically.</p>
+
+	<p>Ri culls its lush information set from the very code that Ruby is built from.  In each of the files of code back in the Ruby Headquarter&#8217;s file cabinet, detailed comments describe everything in sight.</p>
+
+	<p>In Ruby&#8217;s <code>date</code> class, here we have such commented methods:</p>
+
+<pre>
+  # Get the time of this date as [hours, minutes, seconds,
+  # fraction_of_a_second]
+  def time() self.class.day_fraction_to_time(day_fraction) end
+
+  # Get the hour of this date.
+  def hour() time[0] end
+
+  # Get the minute of this date.
+  def min() time[1] end
+</pre>
+
+	<p>The comments show up in Ri.  We type: <code>ri Date#time</code>.</p>
+
+<pre>
+  -------------------------------------------------------------- Date#time
+       time()
+  ------------------------------------------------------------------------
+       Get the time of this date as [hours, minutes, seconds,
+       fraction_of_a_second]
+
+</pre>
+
+	<p>Ri figures out much of how a method works, although it expects coders to write a brief description in the comments just before a method or class definition. I would suggest that whenever you write a method, add a brief description in the comments before that method.  In time, you can generate Ri documentation for that method.</p>
+
+	<p>You can also use a few special characters to enhance your description.  For example, if you indent a paragraph and use an asterisk <code>*</code> or a dash <code>-</code> just before the letters of the first sentence, the paragraph will be recognized as a list item.  Then, if your description needs to be converted to <span class="caps">HTML</span>, you&#8217;ll see the list item appear as an <span class="caps">HTML</span> unordered list.</p>
+
+<pre>
+  # Get the time of this date as an Array of:
+  # * hours
+  # * minutes
+  # * seconds
+  # * fraction_of_a_second
+  def time() self.class.day_fraction_to_time(day_fraction) end
+</pre>
+
+	<p>Other rules as well:  Lists which start with digits followed by periods are recognized as numbered lists.  Emphasized words are surrounded by underscores, bold words by asterisks, code words by plus signs.  Examples are simply blocks of text indented a few spaces.  All of these rules together are called RDoc.</p>
+
+	<p>Here&#8217;s a bit of RDoc from the <code>initialize</code> method in one of my projects called RedCloth.  Notice the indented example as well as the Ruby class and method names flanked with plusses.</p>
+
+<pre>
+  #
+  # Returns a new RedCloth object, based on +String+ and
+  # enforcing all the included +restrictions+.
+  #
+  #   r = RedCloth.new( "h1. A &lt;b&gt;bold&lt;/b&gt; man", [:filter_html] )
+  #   r.to_html
+  #     #=&gt;"&lt;h1&gt;A &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt; man&lt;/h1&gt;" 
+  #
+  def initialize( string, restrictions = [] )
+      @lite = false
+      restrictions.each { |r| method( "#{ r }=" ).call( true ) }
+      super( string )
+  end
+</pre>
+
+	<p>For the full set of RDoc rules see the <strong>Markup</strong> section of the  <a href="http://rdoc.sourceforge.net/doc/files/README.html">README</a>.</p>
+
+	<h3>Pushing Out Your Own Ri</h3>
+
+	<p>Ri doesn&#8217;t automatically read your files for you, though.  You&#8217;ve got to push it along, show it the way.  Change to the directory of the code you&#8217;d like to scan.  Then, use the RDoc tool to make it happen.</p>
+
+<pre>
+  cd ~/cvs/your-code
+  rdoc --ri-site
+</pre>
+
+	<p>Now, try using <code>ri YourClass</code> to ensure all your descriptions are showing up properly. If you want to make <span class="caps">HTML</span> documentation, try this:</p>
+
+<pre>
+  cd ~/cvs/your-code
+  rdoc
+</pre>
+
+	<p>The <code>~/cvs/your-code</code> directory should now also have a fresh <code>doc</code> directory containing <span class="caps">HTML</span> documentation for all of your classes.  View <code>index.html</code> for the pleasant news.</p>
+
+	<p>Well then.  Your hands are in it all now.  Welcome to Ruby.</p>
+
+	<p><img src="i/tigers.vest-4.gif" title="The tiger finds a new home and learns to eventually move on." alt="The tiger finds a new home and learns to eventually move on." /><br />
+</p>
+
+    
+    
+
+        <p align="right">
+        <a href="index.html">Turn page.</a>
+        </p>
+
+    </div>
+</div>
+</div>
+<div id="footer">
+   <div class="pager">
+   &lt; <a href="index.html">prev</a> | <a href="index.html">next</a> &gt;
+   </div>
+   <div class="title">
+   <h3>why's <span class="hilite">(poignant)</span> guide to ruby</h3>
+   </div>
+</div>
+</body>
+</html>
