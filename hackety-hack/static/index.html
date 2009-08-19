@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome!</title>
+    <script type="text/javascript" src="/static/prototype.js"></script>
+    <script type="text/javascript" src="/static/mouseApp.js"></script>
+    <script type="text/javascript" src="/static/mouseIrb.js"></script>
+
+    <script type="text/javascript" src="/static/moo.js"></script>
+    <script type="text/javascript" src="/static/moo_002.js"></script>
+    <script type="text/javascript">
+    var allStretch;
+    var helpPages;
+    var chapPages;
+    var defaultPage;
+    var toot = window.location.search.substr(1)
+
+    //the main function, call to the effect object
+    function dumpAlert(obj) {
+        props = [];
+        for ( var i in obj ) {
+            props.push( "" + i + ": " + obj[i] );
+        }
+        alert( props );
+    }
+    /*
+    window.onload = function() {
+        Element.cleanWhitespace('helpstone');
+        defaultPage = $('helpstone').childNodes[0].innerHTML;
+
+        window.irb = new MouseApp.Notepad('irb');
+    }
+    */
+    </script>
+    <style type="text/css">
+        @import '/static/site.css';
+    </style>
+</head>
+<body>
+<div id="header"><img src="/static/hackety.png" /></div>
+<div id="container">
+    <div id="mainmenu">
+      <ul>
+        <li><h1><img src="/static/icon-new-script.png" /><a href="hack://hackety/new"><strong>Start</strong> a new program.</a></h1></li>
+        <li><h2><img src="/static/icon-learn.png" /><a href="hack://hackety/learn"><strong>Learn Ruby</strong> interactively.</a></h2></li>
+        <li><h2><img src="/static/icon-help.png" /><a href="hack://hackety/help"><strong>Get help</strong>.</a></h2></li>
+      </ul>
+    </div>
+    <h3><img src="/static/icon-files.png" />Saved Programs</h3>
+    <div id="apps">
+      <ul>
+        <li><h4><img src="/static/icon-file.png" /><a href="hack://hackety/edit/blog">Blog</a></h4>
+          <p>A sample web program.</p>
+        </li>
+        <li><h4><img src="/static/icon-file.png" /><a href="hack://hackety/edit/mail">Mail</a></h4>
+          <p>A sample desktop program.</p>
+        </li>
+      </ul>
+    </div>
+    </div>
+</div>
+<input class="keyboard-selector-input" type="text" id="irb_input" autocomplete="off" />
+</body>
+</html>

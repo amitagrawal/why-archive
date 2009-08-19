@@ -1,0 +1,19 @@
+f hacketyhack.exe
+f js3250.dll
+f msvcp71d.dll
+f msvcr71d.dll
+f msvcrt-ruby18.dll
+f nspr4.dll
+f plc4.dll
+f plds4.dll
+f xpcom.dll
+f xul.dll
+r chrome
+r components
+r defaults
+r greprefs
+r plugins
+r res
+r ruby
+
+t hacketyhack.exe

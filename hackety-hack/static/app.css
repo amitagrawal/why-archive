@@ -1,0 +1,33 @@
+body {
+  font-family: "Trebuchet MS", sans-serif;
+	font-size: 14px;
+  text-align: center;
+  margin: 0; padding: 0;
+  background: url(/static/menu-gray.png);
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+    margin: 10px 16px; padding: 0;
+}
+h1 { font-size: 28px; }
+h2 { font-size: 16px; }
+textarea, pre, code {
+	font-family: "Lucida Console", monospace;
+}
+a,a:link,a:visited {
+	color: #077dC1;
+}
+a:hover {
+	color: #F73d31;
+}
+a:active {
+	color: #dddddd;
+}
+a img { border: none; }
+input.keyboard-selector-input {
+    position: fixed;
+    top: 0;
+    _position: absolute;
+    _top: expression(eval(document.body.scrollTop));
+    left: -300px;
+}
