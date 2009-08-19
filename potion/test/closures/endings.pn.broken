@@ -1,0 +1,10 @@
+func = (x, y):
+  x ** y
+… func
+
+func2 = (x, y):
+  x % y
+_ func2
+
+(func, func2)
+# (function(x, y), function(x, y))

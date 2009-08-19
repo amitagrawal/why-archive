@@ -1,0 +1,7 @@
+msg = (): "no arguments" print.
+msg ()
+
+msg2 =: " and highly sparse".
+msg2 ()
+
+# no arguments and highly sparse

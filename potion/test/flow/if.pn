@@ -1,0 +1,17 @@
+a = if (false): 12
+. elsif (true): 14
+. else: 16.
+
+b = if (false): 12
+. elsif (nil): 14
+. else: 16.
+
+c = if (true): 12
+. elsif (true): 14
+. else: 16.
+
+d = 40 if true: self. else: 10.
+
+e = 40 if true: 10.
+
+(a, b, c, d, e) # (14, 16, 12, Lobby, 10)
